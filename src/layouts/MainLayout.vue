@@ -12,7 +12,7 @@
         />
 
         <q-toolbar-title>
-         MyLanguage Admin
+         Bi-lingual Discovery Bible Studies
         </q-toolbar-title>
       </q-toolbar>
     </q-header>
@@ -48,19 +48,24 @@ import { defineComponent, ref } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
 
 const linksList = [
-{
-    title: 'Discovery Bible Study',
+  {
+    title: 'Discovery Bible Studies',
     icon: 'school',
     link: '/dbs/eng00/afk00/1'
-  },{
-    title: 'Set Default DBS Bibles',
-    icon: 'school',
-    link: '/bibles/dbs/afk00'
   },
   {
-    title: 'Original',
+    title: 'How to lead a DBS',
     icon: 'school',
-    link: '/original/'
+    link: '/lead'
+  },{
+    title: 'Bi-lingual Gospel Tracts',
+    icon: 'school',
+    link: '/tracts/'
+  },
+  {
+    title: 'Other Resources',
+    icon: 'school',
+    link: '/mylanguage/'
   }
 ]
 

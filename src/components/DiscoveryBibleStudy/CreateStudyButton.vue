@@ -1,16 +1,15 @@
 <template>
-  <div v-if = this.ready>
-  <q-btn push @click="createStudy" color="primary" label="Create Study" />
-    </div>
+  <div v-if="this.ready">
+    <q-btn push @click="createStudy" color="primary" label="Create Study" />
+  </div>
 </template>
 
 <script>
 import { api } from "boot/axios";
 import { watch, ref } from "vue";
-import { useDbsStore } from 'stores/DbsStore'
+import { useDbsStore } from "stores/DbsStore";
 export default {
-  name: 'CreateStudyButton',
-  props: ['session'],
+  name: "CreateStudyButton",
   setup() {
     const dbsStore = useDbsStore();
     const language1State = ref(dbsStore.getLanguage1);
@@ -38,49 +37,53 @@ export default {
       language1State,
       language2State,
       lessonState,
-      dbsStore
+      dbsStore,
     };
   },
   data() {
     return {
-      language1:null,
+      language1: null,
       language2: null,
       lesson: this.$route.params.session,
-      ready:false,
+      ready: false,
     };
   },
   watch: {
     language1State() {
-      this.checkComplete()
+      this.checkComplete();
     },
     language2State() {
-      this.checkComplete()
+      this.checkComplete();
     },
     lessonState() {
-      this.checkComplete()
+      this.checkComplete();
     },
   },
   methods: {
-    checkComplete(){
-      if (typeof this.language1State != 'undefined' &&
-        typeof this.language1State != 'undefined' &&
-        this.lessonState != null ){
-          this.ready= true
-        }
-        else{
-          this.ready = false
-        }
+    checkComplete() {
+      if (
+        typeof this.language1State != "undefined" &&
+        typeof this.language1State != "undefined" &&
+        this.lessonState != null
+      ) {
+        this.ready = true;
+      } else {
+        this.ready = false;
+      }
     },
-    createStudy(){
-      var url = 'api/dbs/' + this.dbsStore.lesson +  '/' + this.dbsStore.language1.languageCodeHL + '/' + this.dbsStore.language2.languageCodeHL
-      api
-        .get(url)
-        .then((response) => {
-          console.log ('I am emitting')
-          this.$emit("displayDbsText", response.data)
-        })
-    }
-  }
-
-}
+    createStudy() {
+      var url =
+        "api/dbs/view/" +
+        this.dbsStore.lesson +
+        "/" +
+        this.dbsStore.language1.languageCodeHL +
+        "/" +
+        this.dbsStore.language2.languageCodeHL;
+      api.get(url).then((response) => {
+        console.log("I am emitting");
+        this.$emit("displayDbsText", response.data);
+      });
+    },
+  },
+};
 </script>
