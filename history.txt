@@ -1,0 +1,24 @@
+yarn global add @quasar/cli
+removed package-lock.json as per yarn
+
+yarn add --dev dotenv
+https://quasar.dev/quasar-cli-vite/handling-process-env
+
+yarn add vue-pdf -- did not work so I removed
+
+https://www.npmjs.com/package/vue-html2pdf?activeTab=readme
+
+yarn add vue-html2pdf
+
+https://www.npmjs.com/package/html2pdf.js/v/0.9.1
+
+
+https://codersdiaries.com/blog/vue-js-pdf-generate
+
+vue-pdf => does not work, styles are terrible
+
+
+
+quasar new component something
+quasar dev
+
