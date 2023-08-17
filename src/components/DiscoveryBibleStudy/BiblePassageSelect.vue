@@ -38,7 +38,7 @@ export default {
     return {
       language1State,
       language2State,
-      dbsStore
+      dbsStore,
     };
   },
   data() {
@@ -51,38 +51,38 @@ export default {
   },
   watch: {
     language1State() {
-      this.showPassages()
+      this.showPassages();
     },
     language2State() {
-      this.showPassages()
+      this.showPassages();
     },
   },
   mounted() {
     api.get("api/dbs/studies").then((response) => {
-      this.passages = response.data
-      this.supportedPassages = this.passages
-      this.Passages()
+      this.passages = response.data;
+      this.supportedPassages = this.passages;
+      this.Passages();
     });
+  },
+  created() {
+    this.dbsStore.updateLesson(this.$route.params.session)
   },
   methods: {
     showPassages() {
-
-      if (this.language1State == null ||
-        this.language2State == null
-      ) {
-        this.showAllPassages()
+      if (this.language1State == null || this.language2State == null) {
+        this.showAllPassages();
         return;
       } else if (
         typeof this.language1State.collectionCode == "undefined" ||
         typeof this.language2State.collectionCode == "undefined"
       ) {
-        this.showAllPassages()
+        this.showAllPassages();
         return;
       } else if (
         this.language1State.collectionCode == "C" &&
         this.language2State.collectionCode == "C"
       ) {
-        this.showAllPassages()
+        this.showAllPassages();
         return;
       } else {
         this.showNTPassages();
@@ -111,7 +111,7 @@ export default {
       }
     },
     updatePassage() {
-      this.dbsStore.updateLesson(this.study.lesson)
+      this.dbsStore.updateLesson(this.study.lesson);
     },
   },
 };
