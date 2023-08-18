@@ -7,36 +7,27 @@
       option-label="name"
       option-value="languageCodeHL"
       @update:model-value="updateLanguage1"
-      label="First Language"
+      label="Language"
     /><br />
-    <q-select
-      filled
-      v-model="language2"
-      option-label="name"
-      option-value="languageCodeHL"
-      @update:model-value="updateLanguage2"
-      :options="languages"
-      label="Second Language"
-    /><br />
+    <br />
   </div>
 </template>
 
 <script>
 import { api } from "boot/axios";
-import { useDbsStore } from "stores/DbsStore";
+import { useGospelStore } from "stores/GospelStore";
 import { useQuasar } from "quasar";
 export default {
-  name: "LanguageSelect",
+  name: "GospelLanguageSelect",
   setup() {
-    const dbsStore = useDbsStore();
+    const gospelStore = useGospelStore();
     return {
-      dbsStore,
+      gospelStore,
     };
   },
   data() {
     return {
       language1: "",
-      language2: "",
       languages: [],
     };
   },
@@ -45,7 +36,6 @@ export default {
       this.languages = response.data;
       this.insertLanguages();
       this.updateLanguage1();
-      this.updateLanguage2();
     });
   },
   methods: {
@@ -55,18 +45,10 @@ export default {
         if (line.languageCodeHL == this.$route.params.languageCodeHL1) {
           this.language1 = line;
         }
-        if (line.languageCodeHL == this.$route.params.languageCodeHL2) {
-          this.language2 = line;
-        }
       }
     },
     updateLanguage1() {
-      //this.dbsStore.language1 = this.language1;
-      this.dbsStore.updateLanguage1(this.language1);
-    },
-    updateLanguage2() {
-      // this.dbsStore.language2 = this.language2;
-      this.dbsStore.updateLanguage2(this.language2);
+      this.gospelStore.updateLanguage1(this.language1);
     },
   },
 };

@@ -63,7 +63,7 @@ export default {
     checkComplete() {
       if (
         typeof this.language1State != "undefined" &&
-        typeof this.language1State != "undefined" &&
+        typeof this.language2State != "undefined" &&
         this.lessonState != null
       ) {
         this.ready = true;

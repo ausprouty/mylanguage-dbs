@@ -7,36 +7,26 @@
 <script>
 import { api } from "boot/axios";
 import { watch, ref } from "vue";
-import { useDbsStore } from "stores/DbsStore";
+import { useGospelStore } from "stores/DbsStore";
 export default {
   name: "CreateStudyButton",
   setup() {
-    const dbsStore = useDbsStore();
-    const language1State = ref(dbsStore.getLanguage1);
+    const gospelStore = useGospelStore();
+    const language1State = ref(gospelStore.getLanguage1);
     watch(
-      () => dbsStore.getLanguage1,
+      () => gospelStore.getLanguage1,
       (newValue) => {
         language1State.value = newValue.languageCodeHL;
       }
     );
-    const language2State = ref(dbsStore.getLanguage1);
-    watch(
-      () => dbsStore.getLanguage2,
-      (newValue) => {
-        language2State.value = newValue.languageCodeHL;
-      }
-    );
-
     return {
       language1State,
-      language2State,
-      dbsStore,
+      gospelStore,
     };
   },
   data() {
     return {
       language1: null,
-      language2: null,
       ready: false,
     };
   },
@@ -44,17 +34,14 @@ export default {
     language1State() {
       this.checkComplete();
     },
-    language2State() {
-      this.checkComplete();
-    },
+
+
 
   },
   methods: {
     checkComplete() {
       if (
-        typeof this.language1State != "undefined" &&
-        typeof this.language1State != "undefined" &&
-        this.lessonState != null
+        typeof this.language1State != "undefined"
       ) {
         this.ready = true;
       } else {
@@ -64,9 +51,7 @@ export default {
     createTract() {
       var url =
         "api/gospel/view/" +
-        this.dbsStore.language1.languageCodeHL +
-        "/" +
-        this.dbsStore.language2.languageCodeHL;
+        this.gospelStore.language1.webpage;
       api.get(url).then((response) => {
         console.log("I am emitting");
         this.$emit("displayText", response.data);
