@@ -12,7 +12,7 @@
         />
 
         <q-toolbar-title>
-         Bi-lingual Discovery Bible Studies
+         Bi-lingual DBS
         </q-toolbar-title>
       </q-toolbar>
     </q-header>
@@ -58,14 +58,14 @@ const linksList = [
     icon: 'school',
     link: '/lead'
   },{
-    title: 'Bi-lingual Gospel Tracts',
+    title: 'Gospel Outline',
     icon: 'school',
-    link: '/tracts/'
+    link: '/gospel/'
   },
   {
     title: 'Other Resources',
     icon: 'school',
-    link: '/mylanguage/'
+    link: 'https://mylanguage.net.au'
   }
 ]
 

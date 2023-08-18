@@ -11,4 +11,5 @@ quasar dev
 
 
 quasar dev -m pwa
+quasar build -m pwa
 
