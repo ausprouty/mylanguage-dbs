@@ -36,7 +36,7 @@ export default {
 };
 </script>
 
-<styles scoped>
+<style scoped>
 
 div.dbs{
   background-color: white;
@@ -113,4 +113,4 @@ td.dbs, th.dbs {
 }
 
 
-</styles>
+</style>
