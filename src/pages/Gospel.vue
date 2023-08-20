@@ -31,7 +31,7 @@ export default {
   }
 };
 </script>
-<style scoped>
+<style>
 
 
 /*
@@ -129,7 +129,7 @@ a{
 .tract-image-image{
 	max-width: 90%;
   height: auto;
-  width: auto\9; /* ie8 */
+  width: auto; /* ie8 */
 }
 .tract-image-circle-image{
 	max-width: 90%;
@@ -232,7 +232,7 @@ p.tract-circle-point-ltr,
 	color: #000;
 	text-align:left;
 }
-p.tract-circle-point-rtl,
+p.tract-circle-point-rtl
 {
 	font-size: 1em;
 	color: #000;

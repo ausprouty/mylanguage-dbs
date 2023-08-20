@@ -61,7 +61,7 @@ export default {
     api.get("api/dbs/studies").then((response) => {
       this.passages = response.data;
       this.supportedPassages = this.passages;
-      this.Passages();
+      this.showPassages();
     });
   },
   created() {
