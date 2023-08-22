@@ -16,21 +16,21 @@
 <script>
 import { watch, ref } from "vue";
 import { api } from "boot/axios";
-import { useDbsStore } from "stores/DbsStore";
+import { useLanguageStore } from "stores/LanguageStore";
 export default {
   name: "BiblePassageSelect",
   setup() {
-    const dbsStore = useDbsStore();
-    const language1State = ref(dbsStore.getLanguage1);
+    const languageStore = useLanguageStore();
+    const language1State = ref(languageStore.getLanguage1);
     watch(
-      () => dbsStore.getLanguage1,
+      () => languageStore.getLanguage1,
       (newValue) => {
         language1State.value = newValue;
       }
     );
-    const language2State = ref(dbsStore.getLanguage1);
+    const language2State = ref(languageStore.getLanguage1);
     watch(
-      () => dbsStore.getLanguage2,
+      () => languageStore.getLanguage2,
       (newValue) => {
         language2State.value = newValue;
       }
@@ -38,7 +38,7 @@ export default {
     return {
       language1State,
       language2State,
-      dbsStore,
+      languageStore,
     };
   },
   data() {
@@ -65,7 +65,7 @@ export default {
     });
   },
   created() {
-    this.dbsStore.updateLesson(this.$route.params.session)
+    this.languageStore.updateLesson(this.$route.params.session);
   },
   methods: {
     showPassages() {
@@ -111,7 +111,7 @@ export default {
       }
     },
     updatePassage() {
-      this.dbsStore.updateLesson(this.study.lesson);
+      this.languageStore.updateLesson(this.study.lesson);
     },
   },
 };

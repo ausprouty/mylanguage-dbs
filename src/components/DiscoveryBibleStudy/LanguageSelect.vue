@@ -23,14 +23,14 @@
 
 <script>
 import { api } from "boot/axios";
-import { useDbsStore } from "stores/DbsStore";
+import { useLanguageStore } from "stores/LanguageStore";
 import { useQuasar } from "quasar";
 export default {
   name: "LanguageSelect",
   setup() {
-    const dbsStore = useDbsStore();
+    const languageStore = useLanguageStore();
     return {
-      dbsStore,
+      languageStore,
     };
   },
   data() {
@@ -61,12 +61,12 @@ export default {
       }
     },
     updateLanguage1() {
-      //this.dbsStore.language1 = this.language1;
-      this.dbsStore.updateLanguage1(this.language1)
+      //this.languageStore.language1 = this.language1;
+      this.languageStore.updateLanguage1(this.language1);
     },
     updateLanguage2() {
-     // this.dbsStore.language2 = this.language2;
-      this.dbsStore.updateLanguage2(this.language2)
+      // this.languageStore.language2 = this.language2;
+      this.languageStore.updateLanguage2(this.language2);
     },
   },
 };

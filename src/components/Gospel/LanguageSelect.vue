@@ -15,14 +15,14 @@
 
 <script>
 import { api } from "boot/axios";
-import { useGospelStore } from "stores/GospelStore";
+import { useLanguageStore } from "stores/LanguageStore";
 import { useQuasar } from "quasar";
 export default {
   name: "GospelLanguageSelect",
   setup() {
-    const gospelStore = useGospelStore();
+    const languageStore = useLanguageStore();
     return {
-      gospelStore,
+      languageStore,
     };
   },
   data() {
@@ -48,7 +48,7 @@ export default {
       }
     },
     updateLanguage1() {
-      this.gospelStore.updateLanguage1(this.language1);
+      this.languageStore.updateLanguage1(this.language1);
     },
   },
 };

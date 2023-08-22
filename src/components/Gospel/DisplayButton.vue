@@ -6,7 +6,7 @@
 
 <script>
 import { api } from "boot/axios";
-import { useGospelStore } from "stores/GospelStore";
+import { useLanguageStore } from "stores/LanguageStore";
 import { ref } from "vue";
 export default {
   name: "DisplayButton",
@@ -17,19 +17,17 @@ export default {
     };
   },
   setup() {
-    const gospelStore = useGospelStore();
-    const language1State = ref(gospelStore.getLanguage1);
+    const languageStore = useLanguageStore();
+    const language1State = ref(languageStore.getLanguage1);
     return {
       language1State,
-      gospelStore,
+      languageStore,
     };
   },
   methods: {
     createTract() {
-      var url =
-        "api/gospel/view/" +
-        this.gospelStore.language1.webpage;
-        console.log (url)
+      var url = "api/gospel/view/" + this.languageStore.language1.webpage;
+      console.log(url);
       api.get(url).then((response) => {
         console.log("I am emitting");
         this.$emit("displayText", response.data);

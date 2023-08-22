@@ -7,28 +7,28 @@
 <script>
 import { api } from "boot/axios";
 import { watch, ref } from "vue";
-import { useDbsStore } from "stores/DbsStore";
+import { useLanguageStore } from "stores/LanguageStore";
 export default {
   name: "CreateStudyButton",
   setup() {
-    const dbsStore = useDbsStore();
-    const language1State = ref(dbsStore.getLanguage1);
+    const languageStore = useLanguageStore();
+    const language1State = ref(languageStore.getLanguage1);
     watch(
-      () => dbsStore.getLanguage1,
+      () => languageStore.getLanguage1,
       (newValue) => {
         language1State.value = newValue.languageCodeHL;
       }
     );
-    const language2State = ref(dbsStore.getLanguage1);
+    const language2State = ref(languageStore.getLanguage1);
     watch(
-      () => dbsStore.getLanguage2,
+      () => languageStore.getLanguage2,
       (newValue) => {
         language2State.value = newValue.languageCodeHL;
       }
     );
-    const lessonState = ref(dbsStore.getLesson);
+    const lessonState = ref(languageStore.getLesson);
     watch(
-      () => dbsStore.getLesson,
+      () => languageStore.getLesson,
       (newValue) => {
         lessonState.value = newValue;
       }
@@ -37,7 +37,7 @@ export default {
       language1State,
       language2State,
       lessonState,
-      dbsStore,
+      languageStore,
     };
   },
   data() {
@@ -74,11 +74,11 @@ export default {
     createStudy() {
       var url =
         "api/dbs/view/" +
-        this.dbsStore.lesson +
+        this.languageStore.lesson +
         "/" +
-        this.dbsStore.language1.languageCodeHL +
+        this.languageStore.language1.languageCodeHL +
         "/" +
-        this.dbsStore.language2.languageCodeHL;
+        this.languageStore.language2.languageCodeHL;
       api.get(url).then((response) => {
         console.log("I am emitting");
         this.$emit("displayDbsText", response.data);
