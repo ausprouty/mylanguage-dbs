@@ -21,7 +21,7 @@ const routes = [
       },
       {
         name: 'VideoPage',
-        path: 'video/:languageCodeHL1?/:languageCodeHL2?',
+        path: 'video/:languageCodeHL1?/:languageCodeHL2?/:session?',
         component: () => import('src/pages/VideoPage.vue')
       },
     ]

@@ -48,25 +48,36 @@ import { defineComponent, ref } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
 
 const linksList = [
+{
+    title: 'Life Principles',
+    icon: 'school',
+    link: '/life/eng00/afk00/1'
+  },
   {
-    title: 'Discovery Bible Studies',
+    title: 'God\'s Rescue Plan',
     icon: 'school',
     link: '/dbs/eng00/afk00/1'
   },
   {
-    title: 'How to lead a DBS',
+    title: 'JESUS Film',
     icon: 'school',
-    link: '/lead'
-  },{
+    link: '/video/eng00/afk00/1'
+  },
+  {
     title: 'Gospel Outline',
     icon: 'school',
-    link: '/gospel/'
+    link: '/gospel/eng00/afk00/'
   },
   {
     title: 'Other Resources',
     icon: 'school',
     link: 'https://mylanguage.net.au'
-  }
+  },
+  {
+    title: 'How to lead a DBS',
+    icon: 'school',
+    link: '/lead'
+  },
 ]
 
 export default defineComponent({

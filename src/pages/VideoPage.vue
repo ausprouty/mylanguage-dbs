@@ -2,6 +2,8 @@
   <q-page padding>
     <div> <VideoPlayer /></div>
 
+    <div> <VideoPlayer /></div>
+
 
     <!-- content -->
   </q-page>
@@ -15,5 +17,6 @@ export default {
    components: {
     VideoPlayer,
   },
+  
 }
 </script>
