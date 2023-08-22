@@ -19,6 +19,11 @@ const routes = [
         path: 'gospel/:languageCodeHL1?/:languageCodeHL2?',
         component: () => import('pages/Gospel.vue')
       },
+      {
+        name: 'VideoPage',
+        path: 'video/:languageCodeHL1?/:languageCodeHL2?',
+        component: () => import('src/pages/VideoPage.vue')
+      },
     ]
   },
   // Always leave this as last one,

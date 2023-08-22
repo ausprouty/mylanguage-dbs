@@ -88,6 +88,9 @@ table.dbs{
 td.dbs, th.dbs {
   border: none;
 }
+td.rtl{
+  direction: rtl;
+}
 .ltr.dbs.link {
   text-align: center;
 }

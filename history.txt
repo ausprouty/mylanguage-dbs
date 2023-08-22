@@ -10,6 +10,6 @@ quasar new component something
 quasar dev
 
 
-quasar dev -m pwa
+quasar dev -m pwa  -- turn on xampp to right
 quasar build -m pwa
 
