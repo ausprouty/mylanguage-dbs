@@ -4,7 +4,8 @@ export const useLanguageStore = defineStore("LanguageStore", {
   state: () => ({
     language1: null,
     language2: null,
-    lesson: null,
+    dbsLesson: null,
+    lifeLesson: null,
   }),
   getters: {
     getUrl() {
@@ -22,9 +23,12 @@ export const useLanguageStore = defineStore("LanguageStore", {
     getLanguage2() {
       return this.language2;
     },
-    getLesson() {
-      return this.lesson;
+    getDbsLesson() {
+      return this.dbsLesson;
     },
+    getLifeLesson() {
+      return this.lifeLesson;
+    }
   },
   actions: {
     updateLanguage1(newValue) {
@@ -33,8 +37,11 @@ export const useLanguageStore = defineStore("LanguageStore", {
     updateLanguage2(newValue) {
       this.language2 = newValue;
     },
-    updateLesson(newValue) {
-      this.lesson = newValue;
+    updateDbsLesson(newValue) {
+      this.dbsLesson = newValue;
+    },
+    updateLifeLesson(newValue) {
+      this.lifeLesson = newValue;
     },
   },
 });

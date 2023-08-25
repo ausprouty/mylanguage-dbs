@@ -1,0 +1,119 @@
+<template>
+  <q-page padding>
+    <div>
+      <div><LanguageSelect /></div>
+      <div><BiblePassageSelect /></div>
+      <div><CreateStudyButton   @displayDbsText="handleDisplayLifePrinciple"/></div>
+      <hr />
+      <div id="pdfText" v-html="this.text"></div>
+    </div>
+  </q-page>
+</template>
+
+<script>
+import LanguageSelect from "components/LifePrinciples/LanguageSelect.vue";
+import BiblePassageSelect from "components/LifePrinciples/BiblePassageSelect.vue";
+import CreateStudyButton from "components/LifePrinciples/CreateStudyButton.vue";
+export default {
+  name: "DiscoveryBibleStudy",
+  props: ['languageCodeHL1','languageCodeHL2','session'],
+  components: {
+    LanguageSelect,
+    BiblePassageSelect,
+    CreateStudyButton,
+  },
+  data() {
+    return {
+      text: "",
+      filename: 'LifePrinciples',
+    };
+  },
+  methods:{
+    handleDisplayLifePrinciple(response){
+      this.text = response
+    }
+  }
+};
+</script>
+
+<style>
+
+div.dbs{
+  background-color: white;
+  max-width: 800px;
+  margin:auto;
+  background-color: white;
+  padding: 10px;
+}
+table{
+  width:100%;
+  max-width: 800px;
+}
+td {
+  width:50%;
+  vertical-align: top;
+  padding: 10px;
+}
+li{
+  padding-top:10px;
+}
+
+title.dbs{
+  font-size: 1.5em;
+  text-align: center;
+
+}
+h1.dbs{
+  font-size: 2em;
+
+}
+h2.dbs{
+  margin-block-end: 0em;
+  font-size: 1.5em;
+  color: green;
+}
+h3.dbs{
+  margin-block-end: 0.3em;
+  font-size: 1.17em;
+}
+h4.dbs{
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  font-size: 1em;
+}
+table.dbs{
+  border-collapse: collapse;
+  border: none;
+}
+td.dbs, th.dbs {
+  border: none;
+}
+td.rtl{
+  direction: rtl;
+}
+.ltr.dbs.link {
+  text-align: center;
+}
+.languages{
+  text-align: center;
+}
+.title{
+  text-align: center;
+}
+.biblereference{
+  font-weight: bold;
+  color:green;
+}
+.bible-container {
+  display: flex;
+  padding: 10px;
+}
+.bible-text {
+  flex: 1;
+}
+.bible-text:first-child {
+  margin-right: 20px;
+}
+
+
+</style>

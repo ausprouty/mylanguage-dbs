@@ -58,14 +58,14 @@ export default {
     },
   },
   mounted() {
-    api.get("api/dbs/studies").then((response) => {
+    api.get("api/life/studies").then((response) => {
       this.passages = response.data;
       this.supportedPassages = this.passages;
       this.showPassages();
     });
   },
   created() {
-    this.languageStore.updateDbsLesson(this.$route.params.session);
+    this.languageStore.updateLifeLesson(this.$route.params.session);
   },
   methods: {
     showPassages() {
@@ -111,7 +111,7 @@ export default {
       }
     },
     updatePassage() {
-      this.languageStore.updateDbsLesson(this.study.lesson);
+      this.languageStore.updateLifeLesson(this.study.lesson);
     },
   },
 };

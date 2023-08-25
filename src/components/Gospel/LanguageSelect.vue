@@ -42,7 +42,8 @@ export default {
     insertLanguages() {
       for (var i = 0; i < this.languages.length; i++) {
         var line = this.languages[i];
-        if (line.languageCodeHL == this.$route.params.languageCodeHL1) {
+      //  if (line.languageCodeHL == this.$route.params.languageCodeHL1) {
+        if (line.languageCodeHL == this.languageStore.getLanguage2) {
           this.language1 = line;
         }
       }

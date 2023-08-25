@@ -12,7 +12,7 @@
         />
 
         <q-toolbar-title>
-         Bi-lingual DBS
+         Our Language
         </q-toolbar-title>
       </q-toolbar>
     </q-header>
@@ -49,6 +49,11 @@ import EssentialLink from 'components/EssentialLink.vue'
 
 const linksList = [
 {
+    title: 'Our Languages',
+    icon: 'settings',
+    link: '/language'
+  },
+{
     title: 'Life Principles',
     icon: 'school',
     link: '/life/eng00/afk00/1'
@@ -78,6 +83,7 @@ const linksList = [
     icon: 'school',
     link: '/lead'
   },
+
 ]
 
 export default defineComponent({
