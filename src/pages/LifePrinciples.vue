@@ -3,7 +3,7 @@
     <div>
       <div><LanguageSelect /></div>
       <div><BiblePassageSelect /></div>
-      <div><CreateStudyButton   @displayDbsText="handleDisplayLifePrinciple"/></div>
+      <div><CreateStudyButton   @displayText="handleDisplayLifePrinciple"/></div>
       <hr />
       <div id="pdfText" v-html="this.text"></div>
     </div>

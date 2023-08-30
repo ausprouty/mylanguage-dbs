@@ -5,16 +5,16 @@
       <p>What languages do we speak?</p>
       <div><LanguageSelect /></div>
       <div><ContentAvailableButton @displayText="handleDisplay" /></div>
-
+      <br/><br />
       <div v-if="this.available.dbs">
-        <p >Life Principles</p>
-        <p>Discovery Bible Study</p>
+        <p  @click="seeLifePrinciples">Life Principles</p>
+        <p @click="seeDBS">Discovery Bible Study</p>
       </div>
       <div v-if="this.available.bilingualGospel">
-        <p>Bi-lingual Gospel Tracts</p>
+        <p @click="seeGospelTract">Bi-lingual Gospel Tracts</p>
       </div>
       <div v-if="this.available.video">
-        <p>Jesus Video</p>
+        <p @click="seeVideo">Jesus Video</p>
       </div>
     </div>
   </q-page>
@@ -23,6 +23,7 @@
 <script>
 import LanguageSelect from "components/OurLanguages/LanguageSelect.vue";
 import ContentAvailableButton from "src/components/OurLanguages/ContentAvailableButton.vue";
+import { useLanguageStore } from "stores/LanguageStore";
 
 export default {
   name: "OurLanguages",
@@ -30,6 +31,12 @@ export default {
   components: {
     LanguageSelect,
     ContentAvailableButton,
+  },
+  setup() {
+    const languageStore = useLanguageStore();
+    return {
+      languageStore,
+    };
   },
   data() {
     return {
@@ -39,12 +46,37 @@ export default {
         video: false
 
       },
+      link: null,
     };
   },
   methods: {
+
     handleDisplay(response) {
       this.available = response;
+      this.goNow()
     },
+    seeLifePrinciples(){
+      this.goNow('LifePrinciples')
+    },
+    seeDBS(){
+      this.goNow('DiscoveryBibleStudy')
+    },
+    seeGospelTract(){
+      this.goNow('GospelTract')
+    },
+    seeVideo(){
+      this.goNow('VideoPage')
+    },
+    goNow(linkPage){
+      this.$router.push({
+        name: linkPage,
+        params: {
+          languageCodeHL1:  this.languageStore.getLanguage1HLCode,
+          languageCodeHL2:  this.languageStore.getLanguage2HLCode
+        },
+      })
+
+    }
   },
 };
 </script>

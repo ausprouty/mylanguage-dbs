@@ -6,6 +6,7 @@ export const useLanguageStore = defineStore("LanguageStore", {
     language2: null,
     dbsLesson: null,
     lifeLesson: null,
+    jVideoSegment: null,
   }),
   getters: {
     getUrl() {
@@ -23,12 +24,21 @@ export const useLanguageStore = defineStore("LanguageStore", {
     getLanguage2() {
       return this.language2;
     },
+    getLanguage1HLCode() {
+      return this.language1.languageCodeHL;
+    },
+    getLanguage2HLCode() {
+      return this.language2.languageCodeHL;
+    },
     getDbsLesson() {
       return this.dbsLesson;
     },
     getLifeLesson() {
       return this.lifeLesson;
-    }
+    },
+    getJVideoSegment() {
+      return this.jVideoSegment;
+    },
   },
   actions: {
     updateLanguage1(newValue) {
@@ -42,6 +52,9 @@ export const useLanguageStore = defineStore("LanguageStore", {
     },
     updateLifeLesson(newValue) {
       this.lifeLesson = newValue;
+    },
+    updateJVideoSegment(newValue) {
+      this.jVideoSegment = newValue;
     },
   },
 });

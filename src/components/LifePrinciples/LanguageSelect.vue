@@ -60,11 +60,9 @@ export default {
       }
     },
     updateLanguage1() {
-      //this.languageStore.language1 = this.language1;
       this.languageStore.updateLanguage1(this.language1);
     },
     updateLanguage2() {
-      // this.languageStore.language2 = this.language2;
       this.languageStore.updateLanguage2(this.language2);
     },
   },

@@ -26,17 +26,17 @@ export default {
         language2State.value = newValue.languageCodeHL;
       }
     );
-    const dbsLessonState = ref(languageStore.getDbsLesson);
+    const lifeLessonState = ref(languageStore.getDbsLesson);
     watch(
-      () => languageStore.getDbsLesson,
+      () => languageStore.getLifeLesson,
       (newValue) => {
-        dbsLessonState.value = newValue;
+        lifeLessonState.value = newValue;
       }
     );
     return {
       language1State,
       language2State,
-      dbsLessonState,
+      lifeLessonState,
       languageStore,
     };
   },
@@ -44,7 +44,7 @@ export default {
     return {
       language1: null,
       language2: null,
-      dbsLesson: this.$route.params.session,
+      lifeLesson: this.$route.params.session,
       ready: false,
     };
   },
@@ -55,7 +55,7 @@ export default {
     language2State() {
       this.checkComplete();
     },
-    lessonState() {
+    lifeLessonState() {
       this.checkComplete();
     },
   },
@@ -64,7 +64,7 @@ export default {
       if (
         typeof this.language1State != "undefined" &&
         typeof this.language2State != "undefined" &&
-        this.dbsLessonState != null
+        this.lifeLessonState != null
       ) {
         this.ready = true;
       } else {
@@ -73,15 +73,17 @@ export default {
     },
     createStudy() {
       var url =
-        "api/dbs/view/" +
-        this.languageStore.dbsLesson +
+        "api/life/view/" +
+        this.languageStore.lifeLesson +
         "/" +
         this.languageStore.language1.languageCodeHL +
         "/" +
         this.languageStore.language2.languageCodeHL;
+        console.log (url)
       api.get(url).then((response) => {
+        console.log(response);
         console.log("I am emitting");
-        this.$emit("displayDbsText", response.data);
+        this.$emit("displayText", response.data);
       });
     },
   },

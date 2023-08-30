@@ -1,5 +1,5 @@
 <template>
-  <div class="arc-cont" v-html="this.videoIframe">
+  <div class="arc-cont" v-if="show" v-html="this.videoIframe">
     </div>
 </template>
 
@@ -8,6 +8,7 @@ export default {
   name: 'VideoPlayer',
   data() {
     return {
+      show : false,
       videoUrl: '<iframe src="https://api.arclight.org/videoPlayerUrl?refId=',
       videoLanguage: '1_529-',
       videoSegment: 'jf6104-0-0',

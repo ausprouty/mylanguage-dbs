@@ -10,24 +10,30 @@ const routes = [
         component: () => import('pages/DiscoveryBibleStudy.vue')
       },
       {
+        name: 'LifePrinciples',
+        path: 'life/:languageCodeHL1?/:languageCodeHL2?/:session?',
+        component: () => import('pages/LifePrinciples.vue')
+      },
+      {
         name: 'DiscoveryBibleStudy',
         path: 'dbs/:languageCodeHL1?/:languageCodeHL2?/:session?',
         component: () => import('pages/DiscoveryBibleStudy.vue')
       },
+
     {
       name: 'Language',
       path: 'language/:languageCodeHL1?/:languageCodeHL2?',
       component: () => import('pages/OurLanguages.vue')
     },
       {
-        name: 'Gospel',
+        name: 'GospelTract',
         path: 'gospel/:languageCodeHL1?/:languageCodeHL2?',
         component: () => import('pages/Gospel.vue')
       },
       {
         name: 'VideoPage',
         path: 'video/:languageCodeHL1?/:languageCodeHL2?/:session?',
-        component: () => import('src/pages/VideoPage.vue')
+        component: () => import('src/pages/JesusVideo.vue')
       },
     ]
   },
