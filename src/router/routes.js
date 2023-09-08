@@ -15,6 +15,11 @@ const routes = [
         component: () => import('pages/LifePrinciples.vue')
       },
       {
+        name: 'Africa',
+        path: 'africa',
+        component: () => import('src/pages/AfricaMap.vue')
+      },
+      {
         name: 'DiscoveryBibleStudy',
         path: 'dbs/:languageCodeHL1?/:languageCodeHL2?/:session?',
         component: () => import('pages/DiscoveryBibleStudy.vue')
@@ -32,7 +37,7 @@ const routes = [
       },
       {
         name: 'VideoPage',
-        path: 'video/:languageCodeHL1?/:languageCodeHL2?/:session?',
+        path: 'video/:languageCodeHL1?/:languageCodeHL2?/:segment?',
         component: () => import('src/pages/JesusVideo.vue')
       },
     ]

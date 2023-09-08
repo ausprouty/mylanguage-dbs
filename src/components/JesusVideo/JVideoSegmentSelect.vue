@@ -30,7 +30,7 @@ export default {
         language1State.value = newValue;
       }
     );
-    const language2State = ref(languageStore.getLanguage1);
+    const language2State = ref(languageStore.getLanguage2);
     watch(
       () => languageStore.getLanguage2,
       (newValue) => {
@@ -48,6 +48,8 @@ export default {
       ready:false,
       segment: this.$route.params.segment,
       segments: [],
+      video1: null,
+      video2: null
     };
   },
   watch: {
@@ -65,8 +67,8 @@ export default {
   },
   methods: {
     getSegmentList() {
-      //$url = 'api/jvideo/segments/'+ this.language1State.languageCodeHL + '/' + this.language2State.languageCodeHL
-      var url = 'api/jvideo/segments/eng00/aln00';
+      var url = 'api/jvideo/segments/'+ this.language1State.languageCodeHL + '/' + this.language2State.languageCodeHL
+     // var url = 'api/jvideo/segments/eng00/aln00';
       console.log (url)
       api.get(url).then((response) => {
         this.segments = response.data;
@@ -76,6 +78,10 @@ export default {
       this.ready = true;
       this.languageStore.updateJVideoSegment(this.segment.videoSegment);
     },
+    showVideo(){
+      this.$emit("showVideo", this.segment.videoSegment);
+    }
+
   },
 };
 </script>
