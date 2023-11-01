@@ -433,9 +433,9 @@ export default {
   methods: {
     navigateToCountry(countryCode) {
       this.$router.push({
-        name: 'countryLanguages',
+        name: 'CountryLanguages',
         params: {
-          country_code: countryCode,
+          countryCode: countryCode,
         }
       })
     },
