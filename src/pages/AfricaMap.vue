@@ -12,7 +12,7 @@
         :key="country.countryCode"
         :id="country.countryCode"
         :d="country.d"
-        @click="navigateToCountry(country.countryCode)"
+        @click="navigateToCountry(country.countryCode, country.countryName)"
       />
     </svg>
   </div>
@@ -431,11 +431,12 @@ export default {
     };
   },
   methods: {
-    navigateToCountry(countryCode) {
+    navigateToCountry(countryCode,countryName) {
       this.$router.push({
         name: 'CountryLanguages',
         params: {
           countryCode: countryCode,
+          countryName: countryName,
         }
       })
     },

@@ -55,7 +55,7 @@ module.exports = configure(function (ctx) {
       },
       env: {
         API: ctx.dev
-          ? "http://localhost/mylanguage-api/"
+          ? "http://localhost/mylanguage-namespaced/"
           : "https://api.mylanguage.net.au/",
       },
 

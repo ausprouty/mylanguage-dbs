@@ -6,12 +6,12 @@ const routes = [
     children: [
       {
         name: 'DiscoveryBibleStudy',
-        path: '/',
+        path: '/dbs',
         component: () => import('pages/DiscoveryBibleStudy.vue')
       },
       {
         name: 'AudioSample',
-        path: 'audio/sample',
+        path: '/audioSample',
         component: () => import('pages/AudioSample.vue')
       },
       {
@@ -21,12 +21,12 @@ const routes = [
       },
       {
         name: 'Africa',
-        path: 'africa',
+        path: '/',
         component: () => import('src/pages/AfricaMap.vue')
       },
       {
         name: 'CountryLanguages',
-        path: 'languages/:countryCode',
+        path: 'languages/:countryCode/:countryName',
         component: () => import('pages/CountryLanguages.vue')
       },
       {
