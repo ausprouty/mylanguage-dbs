@@ -5,6 +5,11 @@ quasar mode add pwa
 yarn add --dev dotenv
 https://quasar.dev/quasar-cli-vite/handling-process-env
 
+maps from https://simplemaps.com/custom/world#regions cost $340
+https://simplemaps.com/custom/world/jgx97apw.
+
+https://simplemaps.com/resources/svg-world
+
 
 quasar new component something
 quasar dev
