@@ -12,14 +12,23 @@
 	</g>
 
 Goal:
-{{
-  inkscapeConnectorCurvature: "0",
-  id: "LR",
-  countryName: "Liberia",
-  countryCode: "LR",
-  d: "m 193.3,411 -3.4,-0.4 -2.6,5.6 -3.4,-0.1 -2.4,-2.9 0.9,-5.6 -5.1,-8.5 -3.2,1.6 -2.6,0.3 -5.7,6.5 -5.5,7.5 -0.7,4 -2.9,4.4 8.1,8.9 10.4,7.6 11,10.5 12.6,6.6 3.2,-0.1 1,-11.4 1.1,-1.7 -0.3,-5.5 -5.2,-5.8 -3.8,-0.9 -3.6,-3.8 2.7,-6.1 -1.2,-6.7 0.6,-4 z",
-  class: "countryBorder",
-},
+{
+  "countries": [
+    {
+      "id": "ve",
+      "name": "Venezuela, Bolivarian Republic of",
+      "paths": [
+        {
+          "id": "Venezuela_mainland",
+          "d": "m 742.20,619.18 c ... [truncated for brevity]"
+        },
+        {
+          "id": "path3412",
+          "d": "m 834.22,625.23 c ... [truncated for brevity]"
+        },
+        // ... other path elements for Venezuela
+      ]
+    },
 */
 
 //$text = file_get_contents('BlankMapWorld.svg');
@@ -47,33 +56,48 @@ foreach ($lines as $line){
     $path_count = 0;
     $paths = null;
     $country->id = findId($line);
-    $country->code = strtoupper($country->id);
+    $country->countryCode = strtoupper($country->id);
     $country->class = findClass($line);
   }
   elseif (strpos($line, '</g') !== false) {
+    if ($g_found == false){
        $end_country = true;
+    }
+
   }
   elseif (strpos($line, '<path') !== false){
     $path_count++;
-    $path = addPath($line);
-    if ($path){
-      if (isset($country->name)){
-        $path->countryName = $country->name;
+    $paths[] = addPath($line);
+    // for <path id="ocean" class="oceanxx" d="m 2178.51,22.65,11""
+    /*if ($g_found == false){
+      if ($path_count == 1){
+        $end_country = true;
       }
-      if (isset($country->code)){
-        $path->countryCode = $country->code;
-      }
-      $map[] = $path;
     }
+    */
   }
   elseif (strpos($line, '<title') !== false){
-      $country->name = findTitle($line);
+    if (!isset($country->countryName)){
+      $country->countryName = findTitle($line);
+    }
   }
   if (strpos($line, '</path') !== false){
     $end_country = true;
   }
   if ($end_country == true){
+    $country->paths = $paths;
+    if (!isset($country->id)){
+      if (isset($paths[0]->id)){
+        $country->id = $paths[0]->id;
+        $country->CountryCode = strtoupper($country->id);
+      }
+    }
+    if (isset($country->id)){
+      $map[] = $country;
+    }
     $country = new stdClass();
+    $paths = [];
+    $path_count = 0;
     $g_found = false;
     $end_country = false;
   }

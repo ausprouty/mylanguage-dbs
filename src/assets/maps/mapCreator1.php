@@ -12,20 +12,28 @@
 	</g>
 
 Goal:
-{{
-  inkscapeConnectorCurvature: "0",
-  id: "LR",
-  countryName: "Liberia",
-  countryCode: "LR",
-  d: "m 193.3,411 -3.4,-0.4 -2.6,5.6 -3.4,-0.1 -2.4,-2.9 0.9,-5.6 -5.1,-8.5 -3.2,1.6 -2.6,0.3 -5.7,6.5 -5.5,7.5 -0.7,4 -2.9,4.4 8.1,8.9 10.4,7.6 11,10.5 12.6,6.6 3.2,-0.1 1,-11.4 1.1,-1.7 -0.3,-5.5 -5.2,-5.8 -3.8,-0.9 -3.6,-3.8 2.7,-6.1 -1.2,-6.7 0.6,-4 z",
-  class: "countryBorder",
-},
+{
+  "countries": [
+    {
+      "id": "ve",
+      "name": "Venezuela, Bolivarian Republic of",
+      "paths": [
+        {
+          "id": "Venezuela_mainland",
+          "d": "m 742.20,619.18 c ... [truncated for brevity]"
+        },
+        {
+          "id": "path3412",
+          "d": "m 834.22,625.23 c ... [truncated for brevity]"
+        },
+        // ... other path elements for Venezuela
+      ]
+    },
 */
 
-//$text = file_get_contents('BlankMapWorld.svg');
+$text = file_get_contents('BlankMapWorld.svg');
 //$text = file_get_contents('Singapore.svg');
-//$text = file_get_contents('Sudan.svg');
-$text = file_get_contents('Pakistan.svg');
+$text = file_get_contents('Sudan.svg');
 $lines = explode("\n", $text);
 $output = '';
 $count = 0;
@@ -33,8 +41,6 @@ $path_count = 0;
 $paths = null;
 $g_found = false;
 $end_country = false;
-$map = [];
-$country = new stdClass();
 foreach ($lines as $line){
   $count++;
   // this is the header area
@@ -46,63 +52,77 @@ foreach ($lines as $line){
     $g_found = true;
     $path_count = 0;
     $paths = null;
-    $country->id = findId($line);
-    $country->code = strtoupper($country->id);
-    $country->class = findClass($line);
+    $output .= findId($line);
+    $output .= findClass($line);
   }
   elseif (strpos($line, '</g') !== false) {
-       $end_country = true;
+    $end_country = true;
   }
   elseif (strpos($line, '<path') !== false){
     $path_count++;
-    $path = addPath($line);
-    if ($path){
-      if (isset($country->name)){
-        $path->countryName = $country->name;
+    // for <path id="ocean" class="oceanxx" d="m 2178.51,22.65,11""
+    if ($g_found == false){
+      if ($path_count == 1){
+        $output .= '{
+          ';
+        $end_country = true;
       }
-      if (isset($country->code)){
-        $path->countryCode = $country->code;
-      }
-      $map[] = $path;
     }
+    $paths .= addPath($line);
   }
   elseif (strpos($line, '<title') !== false){
-      $country->name = findTitle($line);
+    $output .= findTitle($line);
   }
   if (strpos($line, '</path') !== false){
-    $end_country = true;
+    $output .= endPath($paths, $title);
   }
+
   if ($end_country == true){
-    $country = new stdClass();
+    // output paths// you need to remove the last comma in paths
+    $output .= '  "paths": [' . substr($paths,0, -10);
+    // close it
+    $output .=
+    ']
+     },
+    ';
+    $paths = null;
+    $path_count = 0;
     $g_found = false;
     $end_country = false;
   }
 }
-print_r(json_encode($map));
-
+echo $output;
 
 function findId($line){
   $pos_start = strpos($line, 'id="') + 4;
   $pos_end = strpos($line, '"', $pos_start);
   $str_len = $pos_end - $pos_start;
   $id = substr($line, $pos_start, $str_len );
-  return $id;
+  $output = '
+  {
+    "id": "' . $id . '",
+    ';
+  return $output;
 }
 function findClass($line){
-  $class = null;
+  $output = null;
   $pos_start = strpos($line, 'class="');
   if ($pos_start !== false){
     $pos_start = $pos_start + 7;
     $pos_end = strpos($line, '"', $pos_start);
     $str_len = $pos_end - $pos_start;
     $class = substr($line, $pos_start, $str_len );
+    $output =  '"class": "' . $class . '",
+    ';
   }
-  return $class;
+  return $output;
 }
 function findTitle($line){
   $bad = array('<title>', '</title>');
   $title = str_replace($bad, null, $line);
-  return $title;
+  $output = '"name": "'. $title .'",
+  ';
+  return $output;
 }
 /*	<path id="path2528" d="m 2324.91,732.51 c -0.51,0.321 -0.37,0.561 0.43,0.72 -0.15,-0.24 -0.29,-0.48 -0.43,-0.72"/>
 {
@@ -134,10 +154,16 @@ function addPath($line){
   $pos_d_end = strpos($line, '"', $pos_d_start);
   $len = $pos_d_end - $pos_d_start;
   $d = substr($line, $pos_d_start, $len);
-  $path = new stdClass();
-  $path->id = $id;
-  $path->class = $class;
-  $path->d = $d;
+  $path = '
+        {
+          "id": "'. $id . '",
+          "class": "'. $class . '",
+          "d": "' . $d . '"
+        },
+        ';
   return $path;
+
+
+
 }
 

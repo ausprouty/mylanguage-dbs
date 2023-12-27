@@ -20,8 +20,13 @@ const routes = [
         component: () => import('pages/LifePrinciples.vue')
       },
       {
-        name: 'Africa',
+        name: 'test',
         path: '/',
+        component: () => import('src/pages/MapTest.vue')
+      },
+      {
+        name: 'Africa',
+        path: '/africa',
         component: () => import('src/pages/AfricaMap.vue')
       },
       {
