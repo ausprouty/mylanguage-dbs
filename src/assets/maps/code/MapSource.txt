@@ -1,0 +1,9 @@
+https://commons.wikimedia.org/wiki/File:Clipperton_Island_in_South_America_(-mini_map_-rivers).svg
+
+https://www.svgbackgrounds.com/how-to-optimize-and-reduce-the-file-size-of-svg-images/
+
+https://ian.macky.net/pat/map/clickable_world.html
+
+After you finish drawing your image, at the size you need, go to
+File menu > Document Properties > Page tab > Custom Size > Resize page to content.
+That will make the page exactly fit either everything on the canvas, or whatever you select.

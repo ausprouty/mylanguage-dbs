@@ -22,10 +22,7 @@ Goal:
 },
 */
 
-//$text = file_get_contents('BlankMapWorld.svg');
-//$text = file_get_contents('Singapore.svg');
-//$text = file_get_contents('Sudan.svg');
-$text = file_get_contents('Pakistan.svg');
+$text = file_get_contents('SouthAmericaOnly.svg');
 $lines = explode("\n", $text);
 $output = '';
 $count = 0;
@@ -38,9 +35,9 @@ $country = new stdClass();
 foreach ($lines as $line){
   $count++;
   // this is the header area
- // if ($count < 160){
-  //  continue;
-  //}
+  if ($count < 202){
+    continue;
+  }
   $line = trim($line);
   if (strpos($line, '<g') !== false){
     $g_found = true;
