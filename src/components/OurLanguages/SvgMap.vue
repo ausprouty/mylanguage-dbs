@@ -16,6 +16,11 @@ export default {
   created() {
       this.mapImage = '<img src="/src/assets/maps/' + this.map + '.svg">'
       console.log (this.mapImage)
-  }
+  },
+  methods: {
+    navigateToCountry(countryCode) {
+      alert (countryCode)
+    },
+  },
 };
 </script>

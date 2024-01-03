@@ -22,12 +22,17 @@ const routes = [
       {
         name: 'test',
         path: '/',
-        component: () => import('src/pages/MapTest.vue')
+        component: () => import('src/pages/SouthAmericaMap.vue')
       },
       {
         name: 'Africa',
         path: '/africa',
         component: () => import('src/pages/AfricaMap.vue')
+      },
+      {
+        name: 'South America',
+        path: '/southamerica',
+        component: () => import('src/pages/SouthAmericaMap2.vue')
       },
       {
         name: 'CountryLanguages',
