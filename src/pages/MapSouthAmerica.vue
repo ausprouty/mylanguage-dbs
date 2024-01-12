@@ -1,12 +1,12 @@
 <template>
   <q-page padding>
     <div class="center">
-      
+
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="50%"
         height="100%"
-        transform="scale(1.2)"
+        transform=" translateY(200px) scale(1.2)"
         viewBox="0 0 1000 1001"
       >
         <g
@@ -576,7 +576,7 @@ export default {
  */
 .circlexx {
   opacity: 0;
-  fill: #c0c0c0;
+  fill: var(--color-south_america);
   stroke: #000000;
   stroke-width: 0.5;
 }
@@ -588,7 +588,7 @@ export default {
  */
 .subxx {
   opacity: 0;
-  fill: #c0c0c0;
+  fill:var(--color-south_america);
   stroke: #000000;
   stroke-width: 0.3;
 }
@@ -598,7 +598,7 @@ export default {
  * (all land, as opposed to water, should belong to this class; in order to modify the coastline for land pieces with no borders on them a special class &quot;coastxx&quot; has been added below)
  */
 .landxx {
-  fill: #c0c0c0;
+  fill: var(--color-south_america);
   stroke: #ffffff;
   stroke-width: 0.5;
   fill-rule: evenodd;

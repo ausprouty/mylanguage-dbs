@@ -447,7 +447,7 @@ export default {
 path {
   stroke: #000; /* Stroke color (e.g., black) */
   stroke-width: 10; /* Stroke width (e.g., 2 pixels) */
-  fill: orange; /* Ensure that paths are not filled */
+  fill: var(--color-africa) /* Ensure that paths are not filled */
 }
 .center{
   text-align: center;

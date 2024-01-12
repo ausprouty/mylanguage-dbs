@@ -1,3 +1,35 @@
+:root {
+  --color-africa: #f38b3c  ;
+  --color-asia: #3c6e89;
+  --color-australia: #adaeb0;
+  --color-europe:#009da5  ;
+  --color-north_america: #f65058;
+  --color-south_america: #164c7f;
+
+}
+
+.offline-ready {
+  color: var(--color-s);
+}
+.africa {
+  fill: var(--color-africa);
+}
+.asia {
+  fill:var(--color-asia);
+}
+.australia {
+  fill:var(--color-australia);
+}
+.europe {
+  fill: var(--color-europe);
+}
+.south_america {
+  fill:var(--color-south_america);
+}
+.north_america {
+  fill:var(--color-north_america);
+}
+
 body{
   background-color: lightgrey;
 }

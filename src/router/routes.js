@@ -19,21 +19,8 @@ const routes = [
         path: 'life/:languageCodeHL1?/:languageCodeHL2?/:session?',
         component: () => import('pages/LifePrinciples.vue')
       },
-      {
-        name: 'test',
-        path: '/',
-        component: () => import('src/pages/MapSouthAmerica.vue')
-      },
-      {
-        name: 'World',
-        path: '/world',
-        component: () => import('src/pages/MapContinents.vue')
-      },
-      {
-        name: 'Africa',
-        path: '/africa',
-        component: () => import('src/pages/MapAfrica.vue')
-      },
+
+
 
       {
         name: 'CountryLanguages',
@@ -55,6 +42,21 @@ const routes = [
         name: 'GospelTract',
         path: 'gospel/:languageCodeHL1?/:languageCodeHL2?',
         component: () => import('pages/Gospel.vue')
+      },
+      {
+        name: 'MapWorld',
+        path: '/map/world',
+        component: () => import('src/pages/MapContinents.vue')
+      },
+      {
+        name: 'MapAfrica',
+        path: '/map/africa',
+        component: () => import('src/pages/MapAfrica.vue')
+      },
+      {
+        name: 'MapSouthAmerica',
+        path: '/map/south_america',
+        component: () => import('src/pages/MapSouthAmerica.vue')
       },
       {
         name: 'VideoPage',

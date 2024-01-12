@@ -5,7 +5,7 @@
         xmlns="http://www.w3.org/2000/svg"
         width="100%"
         height="100%"
-        transform=" translateY(200px)  scale(3)"
+        transform="translateY(200px)  scale(3)"
         viewBox="0 0 1000 1001"
       >
         <g
@@ -33,6 +33,7 @@
 export default {
   data() {
     return {
+      selectedContinent:'',
       jsonData:[
     {
         "paths": [
@@ -48,7 +49,7 @@ export default {
             }
         ],
         "continentCode": "AFRICA",
-        "id": "africa",
+        "id": "Africa",
         "class": "africa",
         "transform": "matrix(1.6963e-2,0,0,-1.6963e-2,0,239)"
     },
@@ -146,7 +147,7 @@ export default {
             }
         ],
         "continentCode": "ASIA",
-        "id": "asia",
+        "id": "Asia",
         "class": "asia",
         "transform": "matrix(1.6963e-2,0,0,-1.6963e-2,0,239)"
     },
@@ -169,7 +170,7 @@ export default {
             }
         ],
         "continentCode": "AUSTRALIA",
-        "id": "australia",
+        "id": "Australia",
         "class": "australia",
         "transform": "matrix(1.6963e-2,0,0,-1.6963e-2,0,239)"
     },
@@ -232,7 +233,7 @@ export default {
             }
         ],
         "continentCode": "EUROPE",
-        "id": "europe",
+        "id": "Europe",
         "class": "europe",
         "transform": "matrix(1.6963e-2,0,0,-1.6963e-2,0,239)"
     },
@@ -250,7 +251,7 @@ export default {
             }
         ],
         "continentCode": "SOUTH_AMERICA",
-        "id": "south_america",
+        "id": "SouthAmerica",
         "class": "south_america",
         "transform": "matrix(1.6963e-2,0,0,-1.6963e-2,0,239)"
     },
@@ -303,7 +304,7 @@ export default {
             }
         ],
         "continentCode": "NORTH_AMERICA",
-        "id": "north_america",
+        "id": "NorthAmerica",
         "class": "north_america",
         "transform": "matrix(1.6963e-2,0,0,-1.6963e-2,0,239)"
     }
@@ -316,7 +317,11 @@ export default {
   },
   methods: {
     navigateToContinent(countinentId) {
-      alert (countinentId)
+      console.log (countinentId)
+      this.continentSelected = 'Map' + countinentId
+      this.$router.push({
+        name: this.continentSelected,
+      });
     },
   },
 };
@@ -325,22 +330,5 @@ export default {
 .center {
   text-align: center;
 }
-.africa {
-  fill: sandybrown;
-}
-.asia {
-  fill: green;
-}
-.australia {
-  fill: purple;
-}
-.europe {
-  fill: blue;
-}
-.south_america {
-  fill:#00aa00;
-}
-.north_america {
-  fill: coral;
-}
+
 </style>
