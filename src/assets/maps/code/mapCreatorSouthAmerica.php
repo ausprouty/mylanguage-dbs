@@ -20,7 +20,7 @@ groups: [
     ]
   }
   */
-$text = file_get_contents('../Test.svg');
+$text = file_get_contents('../SouthAmerica.svg');
 $lines = explode("\n", $text);
 $countries = array();
 $g = false;
@@ -28,7 +28,9 @@ $p= false;
 $lineCount = 0;
 foreach ($lines as $line){
   $lineCount++;
-
+  if ($lineCount < 199){
+    continue;
+  }
   if (strpos($line, '<g') !== false){
     $country = new stdClass();
     $country->paths = array();
@@ -42,14 +44,18 @@ foreach ($lines as $line){
        $g = false;
        if (isset($path)){
         $country->paths[] = $path;
+        unset($path);
       }
        $countries[] = $country;
        $country = new stdClass();
        $country->paths = array();
+       $path = new stdClass;
   }
   elseif (strpos($line, '<path') !== false){
     if (isset($path)){
-      $country->paths[] = $path;
+      if (isset($path->id)){
+        $country->paths[] = $path;
+      }
     }
     $path = new stdClass;
     $p= true;
@@ -62,10 +68,12 @@ foreach ($lines as $line){
     if ($g == false){
       if (isset($path)){
         $country->paths[] = $path;
+        unset ($path);
       }
       $countries[] = $country;
       $country = new stdClass();
       $country->paths = array();
+      $path = new stdClass();
     }
     $p= false;
   }
