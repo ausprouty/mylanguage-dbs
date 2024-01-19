@@ -45,7 +45,7 @@ const routes = [
       },
       {
         name: 'MapWorld',
-        path: '/map/world',
+        path: '/',
         component: () => import('src/pages/MapContinents.vue')
       },
       {
