@@ -65,171 +65,45 @@ export default {
       console.log ('I am rescaling map')
       this.scaleMap(this.screenWidth, this.screenHeight)
     },
-    scaleMap(screenWidth, screenHeight){
 
-       if (screenWidth == 412){
-          this.imageScale = 2.5 ;
-        }
-       else if (screenWidth == 280){
-          this.imageScale = 2.5 ;
-        }
-        else if (screenWidth == 360){
-          this.imageScale = 2.5 ;
-        }
-        else if(screenWidth == 375){
-          this.imageScale = 2.5 ;
-        }
-        else if (screenWidth == 390){
-          this.imageScale = 2.5 ;
-        }
-        else if (screenWidth == 412){
-          this.imageScale = 2.5 ;
-        }
-        else if (screenWidth == 414){
-          this.imageScale = 2.5 ;
-        }
-        else if (screenWidth == 430){
-          this.imageScale = 2.5 ;
-        }
-        else if (screenWidth == 540){
-          this.imageScale = 2.5 ;
-        }
-        else if (screenWidth == 768){
-          this.imageScale = 2.5 ;
-        }
-        else if (screenWidth == 820){
-          this.imageScale = 2.5 ;
-        }
-        else if (screenWidth == 912){
-          this.imageScale = 2.5 ;
-        }
-        else if (screenWidth == 1024){
-          this.imageScale = 2.5 ;
-        }
-        else if (screenWidth == 1280){
-          this.imageScale = 2.5 ;
-        }
-        else{
-          var widthScale = screenWidth/this.imageWidth
-          var heightScale = screenHeight/this.imageHeight
-          this.imageScale = widthScale
-          if (widthScale > heightScale){
-            this.imageScale = heightScale
-          }
-          this.imageScale = 2.5
-        }
+    scaleMap(screenWidth, screenHeight){
+      this.imageScale = 2.5
        const svgElement = this.$refs.svgElement;
-       //this.imageScale = 1.4;
-       //svgElement.style.transform = `scale(${this.imageScale})`;
        var offsetX = this.computeOffsetX(screenWidth); // Replace with your desired X-axis offset
-       var offsetY = this.computeOffsetY(screenHeight);; // Replace with your desired Y-axis offset
+       var offsetY = this.computeOffsetY(screenWidth);; // Replace with your desired Y-axis offset
        svgElement.style.transform = `translate(${offsetX}px, ${offsetY}px) scale(${this.imageScale})`;
 
        console.log (screenWidth + ' | ' + screenHeight + ' | ' + this.imageScale + ' | '+ offsetX + '|' + offsetY)
     },
     computeOffsetX(screenWidth){
       console.log (screenWidth)
-      if (screenWidth == 280){
-        return  170;
-      }
-      if (screenWidth == 360){
-        return  225;
-      }
-      if (screenWidth == 375){
-        return  235;
-      }
-      if (screenWidth == 390){
-        return  240;
-      }
-      if (screenWidth == 412){
-        return  260;
-      }
-      if (screenWidth == 414){
-        return  260;
-      }
-      if (screenWidth == 430){
-        return  270;
-      }
-      if (screenWidth == 540){
-        return  350;
-      }
-      if (screenWidth == 768){
-        return  470;
-      }
-      if (screenWidth == 820){
-        return  500;
-      }
-      if (screenWidth == 912){
-        return  570;
-      }
-      if (screenWidth == 1024){
-        return  450;
-      }
-      if (screenWidth == 1280){
-        return  600;
-      }
-      if (screenWidth == 2270){
-        return  1550;
-      }
-      if (screenWidth <=1400){
-        return  600;
-      }
-      return 1550;
+    if (screenWidth < 1000){
+      return screenWidth / 1.6
+    }
+    if (screenWidth < 1200){
+      return screenWidth / 2.3
+    }
+    if (screenWidth < 2000){
+      return screenWidth / 2
+    }
+    return screenWidth / 1.8
     },
-    computeOffsetY(screenHeight){
-      console.log (screenHeight)
-      if (screenHeight == 653){
-        return  200;
+    computeOffsetY(screenWidth){
+      console.log (screenWidth)
+      if (screenWidth < 700){
+        return screenWidth/1.4
       }
-      if (screenHeight == 667){
-        return  300;
+      if (screenWidth < 1000){
+        return screenWidth/1.4
       }
-      if (screenHeight == 720){
-        return  400;
+      if (screenWidth < 1300){
+        return screenWidth/1.8
       }
-      if (screenHeight == 740){
-        return  250;
+      if (screenWidth < 2000){
+        return screenWidth/2
       }
-      if (screenHeight == 800){
-        return  700;
-      }
-      if (screenHeight == 844){
-        return  300;
-      }
-      if (screenHeight == 896){
-        return  300;
-      }
-      if (screenHeight == 914){
-        return  300;
-      }
-      if (screenHeight == 915){
-        return  300;
-      }
-      if (screenHeight == 932){
-        return  300;
-      }
-      if (screenHeight == 1024){
-        return  550;
-      }
-      if (screenHeight == 1180){
-        return  600;
-      }
-      if (screenHeight == 1366){
-        return  500;
-      }
-      if (screenHeight == 1368){
-        return  700;
-      }
-      if (screenHeight == 1648){
-        return  1800;
-      }
-      if (screenHeight <=720){
-        return  499;
-      }
-      if (screenHeight <=1400){
-        return  599;
-      }
-      return 700;
+      return screenWidth/1.5
+
     },
 
     handleTouchStart(event) {
