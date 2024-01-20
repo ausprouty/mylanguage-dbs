@@ -1,6 +1,4 @@
-export const nonReactiveMapData = {
-
-jsonData:[
+export const nonReactiveMapData = [
   {
       "paths": [
           {
@@ -276,4 +274,3 @@ jsonData:[
    }
   ]
 
- }
