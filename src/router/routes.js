@@ -19,9 +19,6 @@ const routes = [
         path: 'life/:languageCodeHL1?/:languageCodeHL2?/:session?',
         component: () => import('pages/LifePrinciples.vue')
       },
-
-
-
       {
         name: 'CountryLanguages',
         path: 'languages/:countryCode/:countryName',
