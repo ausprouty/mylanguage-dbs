@@ -12,6 +12,7 @@
       <svg
         ref="svgMap"
         xmlns="http://www.w3.org/2000/svg"
+        :viewBox="'0 0 ' + viewBoxWidth + ' ' + viewBoxHeight"
         :width="containerWidth"
         :height="containerHeight"
       >
@@ -43,6 +44,8 @@ export default {
       screenWidth: 0,
       containerWidth: 468,
       containerHeight: 350,
+      viewBoxWidth: 468,
+      viewBoxHeight: 250,
       continents: { ...nonReactiveMapData }, // Create a local copy
     };
   },
@@ -56,7 +59,7 @@ export default {
       if (this.screenWidth < 500){
         console.log ('I am resetting container size')
         this.containerWidth = this.screenWidth - 30;
-        this.containerHeight =     this.containerWidth  * (468/350);
+        this.containerHeight = this.containerWidth  * (350/468);
       }
     },
   },
