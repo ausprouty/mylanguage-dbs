@@ -1,14 +1,7 @@
 <template>
   <q-page padding>
     <p>ScreenWidth: {{ screenWidth }}</p>
-    <div
-      ref="svgContainer"
-      :style="{
-        width: containerWidth + 'px',
-        height: containerHeight + 'px',
-        overflow: 'hidden',
-      }"
-    >
+    <div ref="svgContainer" :style="containerStyle">
       <svg
         ref="svgMap"
         xmlns="http://www.w3.org/2000/svg"
@@ -49,6 +42,16 @@ export default {
       continents: { ...nonReactiveMapData }, // Create a local copy
     };
   },
+  computed: {
+    containerStyle() {
+      return {
+        width: this.containerWidth + "px",
+        height: this.containerHeight + "px",
+        overflow: "hidden",
+        marginLeft: `calc((100% - ${this.containerWidth}px) / 2)`, // Center horizontally
+      };
+    },
+  },
   mounted() {
     this.updateScreenWidth();
     window.addEventListener("resize", this.updateScreenWidth);
@@ -56,10 +59,10 @@ export default {
   methods: {
     updateScreenWidth() {
       this.screenWidth = window.innerWidth;
-      if (this.screenWidth < 500){
-        console.log ('I am resetting container size')
+      if (this.screenWidth < 500) {
+        console.log("I am resetting container size");
         this.containerWidth = this.screenWidth - 30;
-        this.containerHeight = this.containerWidth  * (350/468);
+        this.containerHeight = this.containerWidth * (350 / 468);
       }
     },
   },
