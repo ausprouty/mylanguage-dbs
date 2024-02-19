@@ -1,19 +1,15 @@
 <template>
   <q-page padding>
-    <p>ScreenWidth: {{ screenWidth }}</p>
+    <p>{{ screenWidth }}</p>
     <div
       ref="svgContainer"
-      :style="{
-        width: containerWidth + 'px',
-        height: containerHeight + 'px',
-        overflow: 'hidden',
-      }"
+      style="width: 468px; height: 350px; overflow: hidden"
     >
       <svg
         ref="svgMap"
         xmlns="http://www.w3.org/2000/svg"
-        :width="containerWidth"
-        :height="containerHeight"
+        :width="svgWidth"
+        :height="svgHeight"
       >
         <g
           v-for="continent in continents"
@@ -41,26 +37,43 @@ export default {
   data() {
     return {
       screenWidth: 0,
-      containerWidth: 468,
-      containerHeight: 350,
+      svgWidth: 468,
+      svgHeight: 350,
       continents: { ...nonReactiveMapData }, // Create a local copy
     };
   },
   mounted() {
     this.updateScreenWidth();
     window.addEventListener("resize", this.updateScreenWidth);
+    this.$nextTick(() => {
+      this.calculateDimensions();
+    });
+    //window.addEventListener('resize', this.handleResize);
   },
   methods: {
+    navigateToContinent(countinentId) {
+      console.log(countinentId);
+      this.continentSelected = "Map" + countinentId;
+      this.$router.push({
+        name: this.continentSelected,
+      });
+    },
     updateScreenWidth() {
       this.screenWidth = window.innerWidth;
-      if (this.screenWidth < 500){
-        console.log ('I am resetting container size')
-        this.containerWidth = this.screenWidth - 30;
-        this.containerHeight =     this.containerWidth  * (468/350);
+    },
+    calculateDimensions() {
+      const svgMap = this.$refs.svgMap;
+      console.log(svgMap);
+      if (svgMap && svgMap.clientWidth !== 0) {
+        this.svgHeight = 300 * (svgMap.clientHeight / svgMap.clientWidth);
       }
+    },
+    handleResize() {
+      this.calculateDimensions();
     },
   },
   beforeUnmount() {
+    window.removeEventListener("resize", this.handleResize);
     window.removeEventListener("resize", this.updateScreenWidth);
   },
 };
